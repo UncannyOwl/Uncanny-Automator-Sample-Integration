@@ -472,7 +472,7 @@ function uncanny_automator_actions_send_email() {
 					'email', // Validation type
 					'{{admin_email}}', // Default value of the text field. In this case we are passing a token.
 					true, // Is the field required
-					'The email address that the email is sent from.', // A light description of what the field is.
+					__( 'The email address that the email is sent from.', 'uncanny-automator' ), // A light description of what the field is.
 					'example@example.com' // The placeholder of the field
 				),
 
