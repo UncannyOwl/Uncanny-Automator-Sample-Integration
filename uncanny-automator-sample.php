@@ -37,7 +37,7 @@ class Uncanny_Automator_Sample {
 		 */
 		add_action( 'plugins_loaded', array( $this, 'setup_integration' ) );
 
-		add_filter( 'uncanny_automator_integrations', array( $this, 'add_this_integration' ) );
+		add_filter( 'automator_integrations', array( $this, 'add_this_integration' ) );
 	}
 
 	/**
