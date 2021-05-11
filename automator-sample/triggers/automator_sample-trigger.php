@@ -25,9 +25,9 @@ class Automator_Sample_Trigger {
 		$this->set_trigger_code( 'VIEWPAGE_SAMPLE' );
 		$this->set_trigger_meta( 'WPPAGE' );
 		/* Translators: Some information for translators */
-		$this->set_sentence( sprintf( esc_attr__( 'SAMPLE! A user views {{a page:%1$s}} {{a number of:%2$s}} time(s)', 'uncanny-automator' ), $this->trigger_meta, 'NUMTIMES' ) );
+		$this->set_sentence( sprintf( esc_attr__( 'A user views {{a page:%1$s}} from Sample Integration', 'uncanny-automator' ), $this->trigger_meta, 'NUMTIMES' ) );
 		/* Translators: Some information for translators */
-		$this->set_readable_sentence( esc_attr__( 'SAMPLE! A user views {{a page}}', 'uncanny-automator' ) );
+		$this->set_readable_sentence( esc_attr__( 'A user views {{a page}} from Sample Integration', 'uncanny-automator' ) );
 
 		$this->add_action( 'template_redirect', 90 );
 
