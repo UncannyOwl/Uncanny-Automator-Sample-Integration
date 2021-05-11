@@ -46,7 +46,11 @@ class Uncanny_Automator_Sample {
 	 * @throws Exception
 	 */
 	public function setup_integration() {
-		$this->integration_dir = automator_add_integration( $this->directory );
+		if ( function_exists( 'automator_add_integration' ) ) {
+			$this->integration_dir = automator_add_integration( $this->directory );
+		} else {
+			trigger_error( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' );
+		}
 	}
 
 	/**
