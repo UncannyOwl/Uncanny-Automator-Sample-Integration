@@ -37,7 +37,7 @@ class Uncanny_Automator_Sample {
 		 */
 		add_action( 'plugins_loaded', array( $this, 'setup_integration' ) );
 
-		add_filter( 'automator_integrations', array( $this, 'add_this_integration' ) );
+		add_filter( 'automator_integrations_setup', array( $this, 'add_this_integration' ) );
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Uncanny_Automator_Sample {
 		if ( function_exists( 'automator_add_integration' ) ) {
 			$this->integration_dir = automator_add_integration( $this->directory );
 		} else {
-			trigger_error( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' );
+			trigger_error( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' ); //phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		}
 	}
 
@@ -58,12 +58,18 @@ class Uncanny_Automator_Sample {
 	 *
 	 * @param $directories
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	public function add_this_integration( $directories ) {
-		$directories[ $this->integration_code ] = $this->integration_dir;
+		// validate
+		if ( empty( $this->integration_dir ) ) {
+			return $directories;
+		}
+		if ( empty( $this->integration_code ) ) {
+			return $directories;
+		}
 
-		return $directories;
+		return automator_add_integration_directory( $this->integration_code, $this->integration_dir, $directories );
 	}
 }
 
