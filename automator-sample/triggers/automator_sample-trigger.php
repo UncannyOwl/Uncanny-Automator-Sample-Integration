@@ -10,10 +10,9 @@ class Automator_Sample_Trigger {
 	use Recipe\Triggers;
 
 	/**
-	 * Automator3_Sample constructor.
+	 * Automator_Sample_Trigger constructor.
 	 */
 	public function __construct() {
-		add_filter( 'automator_auto_complete_trigger', '__return_false' );
 		$this->setup_trigger();
 	}
 
