@@ -37,7 +37,7 @@ class Uncanny_Automator_Sample {
 		 */
 		add_action( 'plugins_loaded', array( $this, 'setup_integration' ) );
 
-		add_filter( 'automator_integrations_setup', array( $this, 'add_this_integration' ) );
+		add_action( 'automator_configuration_complete', array( $this, 'add_this_integration' ) );
 	}
 
 	/**
@@ -56,20 +56,18 @@ class Uncanny_Automator_Sample {
 	/**
 	 * Add integration and all related files to Automator so that it shows up under Triggers / Actions
 	 *
-	 * @param $directories
-	 *
-	 * @return array
+	 * @return bool|null
 	 */
-	public function add_this_integration( $directories ) {
+	public function add_this_integration() {
 		// validate
 		if ( empty( $this->integration_dir ) ) {
-			return $directories;
+			return false;
 		}
 		if ( empty( $this->integration_code ) ) {
-			return $directories;
+			return false;
 		}
 
-		return automator_add_integration_directory( $this->integration_code, $this->integration_dir, $directories );
+		automator_add_integration_directory( $this->integration_code, $this->integration_dir );
 	}
 }
 
