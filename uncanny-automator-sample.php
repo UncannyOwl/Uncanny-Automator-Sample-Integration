@@ -15,10 +15,6 @@
  */
 class Uncanny_Automator_Sample {
 	/**
-	 * @var
-	 */
-	public $integration_dir;
-	/**
 	 * @var string
 	 */
 	public $integration_code = 'automator-sample';
@@ -35,39 +31,25 @@ class Uncanny_Automator_Sample {
 		/**
 		 * Waiting for the Automator to load.
 		 */
-		add_action( 'plugins_loaded', array( $this, 'setup_integration' ) );
-
 		add_action( 'automator_configuration_complete', array( $this, 'add_this_integration' ) );
-	}
-
-	/**
-	 * Add custom integration to Automator
-	 *
-	 * @throws Exception
-	 */
-	public function setup_integration() {
-		if ( function_exists( 'automator_add_integration' ) ) {
-			$this->integration_dir = automator_add_integration( $this->directory );
-		} else {
-			trigger_error( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' ); //phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-		}
 	}
 
 	/**
 	 * Add integration and all related files to Automator so that it shows up under Triggers / Actions
 	 *
 	 * @return bool|null
+	 * @throws \Uncanny_Automator\Automator_Exception
 	 */
 	public function add_this_integration() {
-		// validate
-		if ( empty( $this->integration_dir ) ) {
-			return false;
+		if ( ! function_exists( 'automator_add_integration' ) ) {
+			wp_die( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' ); //phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		}
-		if ( empty( $this->integration_code ) ) {
+
+		if ( empty( $this->integration_code ) || empty( $this->directory ) ) {
 			return false;
 		}
 
-		automator_add_integration_directory( $this->integration_code, $this->integration_dir );
+		automator_add_integration_directory( $this->integration_code, $this->directory );
 	}
 }
 
