@@ -1,6 +1,6 @@
 <?php
 
-namespace Uncanny_Automator;
+use Uncanny_Automator\Settings;
 
 /**
  * Sample Integration Settings
@@ -58,6 +58,10 @@ class Sample_Integration_Settings {
 	 * Creates the output of the settings page
 	 */
 	public function output() {
+		// Check whether there is an account connected
+		// Dummy data
+		$is_connected = true;
+
 		// Get user data
 		// Dummy data
 		$user_data = (object) array(

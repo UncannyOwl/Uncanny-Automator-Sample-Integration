@@ -1,7 +1,5 @@
 <?php
 
-namespace Uncanny_Automator;
-
 /**
  * Sample Integration Settings
  */
@@ -24,22 +22,22 @@ namespace Uncanny_Automator;
 				<?php 
 
 				// Check what button we have to add
-				if ( $this->is_connected ) {
+				if ( $is_connected ) {
 
 					?>
 
-					Connected
+					Output (account connected)
 
 					<?php
 
 				}
 
-				// Check if Slack is NOT connected
-				if ( !  $this->is_connected ) {
+				// Check if the account is NOT connected
+				if ( !  $is_connected ) {
 
 					?>
 
-					Not connected
+					Output (account not connected)
 
 					<?php
 
@@ -55,7 +53,7 @@ namespace Uncanny_Automator;
 
 			<?php
 
-			if ( $this->is_connected ) {
+			if ( $is_connected ) {
 
 				?>
 
@@ -100,7 +98,7 @@ namespace Uncanny_Automator;
 
 			} 
 
-			if ( ! $this->is_connected ) {
+			if ( ! $is_connected ) {
 
 				?>
 
