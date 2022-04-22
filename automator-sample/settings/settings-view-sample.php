@@ -17,7 +17,7 @@
 
 			<?php 
 
-			// Check what button we have to add
+			// Check if the account is connected
 			if ( $is_connected ) {
 
 				?>
@@ -28,7 +28,7 @@
 
 			}
 
-			// Check if Slack is NOT connected
+			// Check if the account is NOT connected
 			if ( !  $is_connected ) {
 
 				?>
