@@ -1,7 +1,5 @@
 <?php 
 
-namespace Uncanny_Automator;
-
 /**
  * Class Sample_Integration_Helpers
  */
