@@ -99,7 +99,7 @@ class Automator_Sample_Action {
 	 * @param array $args
 	 * @param $parsed
 	 */
-	protected function process_action( int $user_id, array $action_data, int $recipe_id, array $args, $parsed ) {
+	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$action_meta = $action_data['meta'];
 		// Parsing fields to return an actual value from token
 		$data = array(

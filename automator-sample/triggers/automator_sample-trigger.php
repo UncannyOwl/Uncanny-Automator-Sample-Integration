@@ -43,7 +43,7 @@ class Automator_Sample_Trigger {
 	/**
 	 * @return bool
 	 */
-	public function validate_trigger(): bool {
+	public function validate_trigger( ...$args ) {
 
 		if ( ! is_page() && ! is_archive() ) {
 			return false;
