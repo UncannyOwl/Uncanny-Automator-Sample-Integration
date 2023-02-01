@@ -47,8 +47,6 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 
 		$wp_pages = get_pages();
 
-		error_log( var_export( $wp_pages, true ) );
-
 		foreach ( $wp_pages as $page ) {
 
 			if ( 'publish' !== $page->post_status ) {
