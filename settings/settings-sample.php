@@ -3,33 +3,22 @@
 /**
  * Sample Integration Settings
  */
-class Sample_Integration_Settings {
-	/**
-	 * Creates the settings page
-	 */
-	public function __construct() {
-		// Add tab
-		add_filter(
-			'automator_settings_premium_integrations_tabs',
-			array( $this, 'add_tab' ),
-			99,
-			1
-		);
+class Sample_Integration_Settings  extends Uncanny_Automator\Settings\Premium_Integration_Settings {
+
+	public function set_properties() {
+
+		$this->set_id( 'sample-integration' );
+
+		$this->set_icon( __DIR__ . 'img\automator-core-icon.svg'  );
+
+		$this->set_name( 'Sample integration' );
+
+		//$this->register_option( 'some_sample_intgeration_setting' );
+
 	}
 
-	/**
-	 * Adds the new tab
-	 * 
-	 * @param Array $tabs The tabs
-	 */
-	public function add_tab( $tabs ) {
-		$tabs[ 'custom-integration' ] = (object) array(
-			'name'     => esc_html__( 'Custom integration', 'text-domain' ),
-			'status'   => 'success', // Either "success" or empty
-			'function' => array( $this, 'output' ),
-		);
-
-		return $tabs;
+	public function get_status() {
+		return 'success';
 	}
 
 	/**
@@ -58,3 +47,5 @@ class Sample_Integration_Settings {
 		include_once 'settings-view-sample.php';
 	}
 }
+
+new Sample_Integration_Settings();

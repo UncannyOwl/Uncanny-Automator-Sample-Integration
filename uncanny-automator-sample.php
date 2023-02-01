@@ -13,44 +13,14 @@
  * Text Domain:       automator-sample
  * Domain Path:       /languages
  */
-class Uncanny_Automator_Sample {
-	/**
-	 * @var string
-	 */
-	public $integration_code = 'automator-sample';
-	/**
-	 * @var string
-	 */
-	public $directory;
 
-	/**
-	 * Uncanny_Automator_Sample constructor.
-	 */
-	public function __construct() {
-		$this->directory = __DIR__ . DIRECTORY_SEPARATOR . $this->integration_code;
-		/**
-		 * Waiting for the Automator to load.
-		 */
-		add_action( 'automator_configuration_complete', array( $this, 'add_this_integration' ) );
-	}
 
-	/**
-	 * Add integration and all related files to Automator so that it shows up under Triggers / Actions
-	 *
-	 * @return bool|null
-	 * @throws \Uncanny_Automator\Automator_Exception
-	 */
-	public function add_this_integration() {
-		if ( ! function_exists( 'automator_add_integration' ) ) {
-			wp_die( 'automator_add_integration() function not found. Please upgrade Uncanny Automator to version 3.0+' ); //phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-		}
+add_action( 'automator_configuration_complete', function() {
 
-		if ( empty( $this->integration_code ) || empty( $this->directory ) ) {
-			return false;
-		}
+	require_once 'add-sample-integration.php';
+	require_once 'actions/automator-sample-action.php';
+	require_once 'triggers/automator-sample-trigger.php';
+	require_once 'settings/settings-sample.php';
+});
 
-		automator_add_integration_directory( $this->integration_code, $this->directory );
-	}
-}
 
-new Uncanny_Automator_Sample();

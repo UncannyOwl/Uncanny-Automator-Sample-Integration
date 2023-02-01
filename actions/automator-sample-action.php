@@ -1,30 +1,19 @@
 <?php
 
-use Uncanny_Automator\Recipe;
-
 /**
  * Class Automator_Sample_Action
  */
-class Automator_Sample_Action {
-	use Recipe\Actions;
-
-
-	/**
-	 * Automator_Sample_Action constructor.
-	 */
-	public function __construct() {
-		$this->setup_action();
-	}
+class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 
 	/**
 	 *
 	 */
-
 	protected function setup_action() {
 
 		$this->set_integration( 'AUTOMATOR_SAMPLE' );
 		$this->set_action_code( 'SAMPLE_SENDEMAIL' );
 		$this->set_action_meta( 'SAMPLE_EMAILTO' );
+
 		/* translators: Action - WordPress */
 		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'uncanny-automator' ), $this->get_action_meta() ) );
 		/* translators: Action - WordPress */
@@ -89,7 +78,6 @@ class Automator_Sample_Action {
 
 		$this->set_options_group( $options_group );
 
-		$this->register_action();
 	}
 
 	/**
@@ -125,3 +113,5 @@ class Automator_Sample_Action {
 		Automator()->complete->action( $user_id, $action_data, $recipe_id );
 	}
 }
+
+new Automator_Sample_Action();
