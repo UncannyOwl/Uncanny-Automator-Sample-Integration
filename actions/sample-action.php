@@ -19,9 +19,8 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 		/* translators: Action - WordPress */
 		$this->set_readable_sentence( esc_attr__( 'Send an {{email}} from Sample Integration', 'uncanny-automator' ) );
 		
-
 		$this->set_options_callback( array( $this, 'load_options' ) );
-
+		
 	}
 
 	public function load_options() {
