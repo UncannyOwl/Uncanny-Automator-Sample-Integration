@@ -18,6 +18,14 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'uncanny-automator' ), $this->get_action_meta() ) );
 		/* translators: Action - WordPress */
 		$this->set_readable_sentence( esc_attr__( 'Send an {{email}} from Sample Integration', 'uncanny-automator' ) );
+		
+
+		$this->set_options_callback( array( $this, 'load_options' ) );
+
+	}
+
+	public function load_options() {
+
 		$options_group = array(
 			$this->get_action_meta() => array(
 				/* translators: Email field */
@@ -76,8 +84,10 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 			),
 		);
 
-		$this->set_options_group( $options_group );
-
+		return array(
+				'options_group' => $options_group,
+		);
+		
 	}
 
 	/**
