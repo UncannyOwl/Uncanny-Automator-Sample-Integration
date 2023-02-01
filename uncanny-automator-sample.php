@@ -17,7 +17,7 @@
 
 add_action( 'automator_configuration_complete', function() {
 
-	require_once 'add-sample-integration.php';
+	require_once 'sample-integration.php';
 	require_once 'actions/automator-sample-action.php';
 	require_once 'triggers/automator-sample-trigger.php';
 	require_once 'settings/settings-sample.php';
