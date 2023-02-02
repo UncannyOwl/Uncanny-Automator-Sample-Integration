@@ -15,15 +15,17 @@
  */
 
 
-if ( class_exists( 'Uncanny_Automator\Recipe\Integration' ) ) {
-	add_action( 'automator_configuration_complete', function() {
+function sample_integration_load_files() {
+	// If this class doesn't exist Uncanny Automator plugin needs to be updated.
+	if ( ! class_exists( 'Uncanny_Automator\Recipe\Integration' ) ) {
+		return;
+	}
 
-		require_once 'sample-integration.php';
-		require_once 'actions/sample-action.php';
-		require_once 'triggers/sample-trigger.php';
-		require_once 'settings/settings-sample.php';
-	});
+	require_once 'sample-integration.php';
+	require_once 'actions/sample-action.php';
+	require_once 'triggers/sample-trigger.php';
+	require_once 'settings/settings-sample.php';
 }
 
-
+add_action( 'automator_configuration_complete', 'sample_integration_load_files' );
 
