@@ -15,12 +15,15 @@
  */
 
 
-add_action( 'automator_configuration_complete', function() {
+if ( class_exists( 'Uncanny_Automator\Recipe\Integration' ) ) {
+	add_action( 'automator_configuration_complete', function() {
 
-	require_once 'sample-integration.php';
-	require_once 'actions/sample-action.php';
-	require_once 'triggers/sample-trigger.php';
-	require_once 'settings/settings-sample.php';
-});
+		require_once 'sample-integration.php';
+		require_once 'actions/sample-action.php';
+		require_once 'triggers/sample-trigger.php';
+		require_once 'settings/settings-sample.php';
+	});
+}
+
 
 
