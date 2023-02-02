@@ -14,7 +14,7 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		$this->set_trigger_code( 'VIEWPAGE_SAMPLE' );
 		$this->set_trigger_meta( 'WPPAGE' );
 		/* Translators: Some information for translators */
-		$this->set_sentence( sprintf( esc_attr__( 'A user views {{a page:%1$s}} from Sample Integration', 'automator-sample' ), $this->get_trigger_meta(), 'NUMTIMES' ) );
+		$this->set_sentence( sprintf( esc_attr__( 'A user views {{a page:%1$s}} from Sample Integration', 'automator-sample' ), $this->get_trigger_meta() ) );
 		/* Translators: Some information for translators */
 		$this->set_readable_sentence( esc_attr__( 'A user views {{a page}} from Sample Integration', 'automator-sample' ) );
 
@@ -82,6 +82,10 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		global $post;
 		$this->set_post_id( $post->ID );
 
+	}
+
+	protected function process_trigger( $args ) {
+		elog($args, '$args');
 	}
 }
 
