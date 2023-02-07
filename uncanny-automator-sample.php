@@ -38,5 +38,5 @@ function sample_integration_load_files() {
 	
 }
 
-add_action( 'automator_configuration_complete', 'sample_integration_load_files' );
+add_action( 'automator_add_integration', 'sample_integration_load_files' );
 
