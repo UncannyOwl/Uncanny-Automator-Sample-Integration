@@ -44,12 +44,6 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 	 */
 	public function validate_trigger( $trigger, $hook_args ) {
 
-		// Parse the args from the wp_after_insert_post hook
-		$post_id = array_shift( $hook_args );
-		$post = array_shift( $hook_args );
-		$update = array_shift( $hook_args ); 
-		$post_before = array_shift( $hook_args ); 
-
 		// Make sure the trigger has some value selected in the options
 		if ( ! isset( $trigger['meta']['POST_TYPES_DROPDOWN'] ) ) {
 			//Something is wrong, the trigger doesn't have the required option value.
@@ -58,6 +52,12 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 
 		// Get the dropdown value
 		$selected_post_type = $trigger['meta']['POST_TYPES_DROPDOWN'];
+
+		// Parse the args from the wp_after_insert_post hook
+		$post_id = array_shift( $hook_args );
+		$post = array_shift( $hook_args );
+		$update = array_shift( $hook_args ); 
+		$post_before = array_shift( $hook_args ); 
 
 		// If the post type selected in the trigger options doesn't match the post type being inserted, bail.
 		if ( $selected_post_type !== $post->post_type ) {
@@ -73,11 +73,10 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		return true;
 	}
 
-	public function process_tokens( $trigger, $hook_args, $trigger_log_entry ) {
+	public function process_tokens( $completed_trigger, $hook_args ) {
 
 		elog( 'process_tokens' );
-		elog( $trigger, '$trigger' );
+		elog( $completed_trigger, '$completed_trigger' );
 		elog( $hook_args, '$hook_args' );
-		elog( $trigger_log_entry, '$trigger_log_entry' );
 	}
 }
