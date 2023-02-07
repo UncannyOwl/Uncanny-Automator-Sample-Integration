@@ -122,5 +122,3 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 		Automator()->complete->action( $user_id, $action_data, $recipe_id );
 	}
 }
-
-new Automator_Sample_Action();

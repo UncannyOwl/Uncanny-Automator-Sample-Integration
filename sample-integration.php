@@ -31,5 +31,3 @@ class Add_Sample_Integration extends Uncanny_Automator\Recipe\Integration {
 		return true;
 	}
 }
-
-new Add_Sample_Integration();

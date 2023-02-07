@@ -47,5 +47,3 @@ class Sample_Integration_Settings  extends Uncanny_Automator\Settings\Premium_In
 		include_once 'settings-view-sample.php';
 	}
 }
-
-new Sample_Integration_Settings();
