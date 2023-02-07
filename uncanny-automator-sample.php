@@ -21,10 +21,20 @@ function sample_integration_load_files() {
 		return;
 	}
 
+	require_once 'helpers/helpers.php';
+	$helpers = new Helpers();
+
 	require_once 'sample-integration.php';
+	new Add_Sample_Integration( $helpers );
+
 	require_once 'actions/sample-action.php';
+	new Automator_Sample_Action( $helpers );
+
 	require_once 'triggers/sample-trigger.php';
+	new Automator_Sample_Trigger( $helpers );
+
 	require_once 'settings/settings-sample.php';
+	new Sample_Integration_Settings( $helpers );
 }
 
 add_action( 'automator_configuration_complete', 'sample_integration_load_files' );
