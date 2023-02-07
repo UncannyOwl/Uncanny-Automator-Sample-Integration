@@ -65,7 +65,7 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		}
 
 		// Make sure the post is being published and not updated or drafted
-		if ( ! $this->post_is_being_published( $post, $post_before ) ) {
+		if ( ! $this->helpers->post_is_being_published( $post, $post_before ) ) {
 			return false;
 		}
 
