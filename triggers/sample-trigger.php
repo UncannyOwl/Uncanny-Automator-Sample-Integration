@@ -13,32 +13,17 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		$this->set_integration( 'AUTOMATOR_SAMPLE' );
 		$this->set_trigger_code( 'POST_CREATED_SAMPLE' );
 		$this->set_trigger_meta( 'POST_TYPE' );
-		/* Translators: Some information for translators */
-		$this->set_sentence( sprintf( esc_attr__( 'A {{a post type:%1$s}} is created sample trigger', 'automator-sample' ), 'POST_TYPE' ) );
-		/* Translators: Some information for translators */
-		$this->set_readable_sentence( esc_attr__( 'A {{a post type}} is created sample trigger', 'automator-sample' ) );
+		/* Translators: post type */
+		$this->set_sentence( sprintf( esc_attr__( 'A {{post type:%1$s}} is created sample trigger', 'automator-sample' ), 'POST_TYPE' ) );
+		/* Translators: post type */
+		$this->set_readable_sentence( esc_attr__( 'A {{post type}} is created sample trigger', 'automator-sample' ) );
 
 		$this->add_action( 'wp_after_insert_post', 90, 4 );
-
-		$this->set_tokens(
-			array(
-				array(
-					'tokenId'         => 'POST_TITLE',
-					'tokenName'       => __( 'Post Title', 'automator-sample' ),
-					'tokenType'       => 'text',
-				),
-				array(
-					'tokenId'         => 'POST_URL',
-					'tokenName'       => __( 'Post URL', 'automator-sample' ),
-					'tokenType'       => 'text',
-				),
-			)
-		);
 	}
 
 	public function load_options() {
 
-		$POST_TYPE = array(
+		$post_types_dropdown = array(
 			'input_type'      => 'select',
 			'option_code'     => 'POST_TYPE',
 			'label'           => __( 'Post type', 'automator-sample' ),
@@ -49,23 +34,10 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 
 		return array(
 			'options' => array(
-				$POST_TYPE
+				$post_types_dropdown
 			)
 		);
-	}
-
-	/**
-	 * maybe_add_recipe_specific_tokens
-	 * 
-	 * Alter this method if you want to add recipe-specific tokens that depend on values selected in the trigger options.
-	 *
-	 * @param  mixed $tokens
-	 * @param  mixed $args
-	 * @return void
-	 */
-	public function maybe_add_recipe_specific_tokens( $tokens, $args ) {
-		return $tokens;
-	}
+	}	
 
 	/**
 	 * @return bool
@@ -101,7 +73,42 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		return true;
 	}
 
+	/**
+	 * additional_tokens
+	 * 
+	 * Alter this method if you want to add some additional tokens.
+	 *
+	 * @param  mixed $tokens
+	 * @param  mixed $trigger - options selected in the current recipe/trigger
+	 * @return array
+	 */
+	public function additional_tokens( $tokens, $trigger ) {
 
+		$tokens[] = array(
+			'tokenId'         => 'POST_TITLE',
+			'tokenName'       => __( 'Post Title', 'automator-sample' ),
+			'tokenType'       => 'text',
+		);
+
+		$tokens[] = array(
+			'tokenId'         => 'POST_URL',
+			'tokenName'       => __( 'Post URL', 'automator-sample' ),
+			'tokenType'       => 'text',
+		);
+
+		return $tokens;
+	}
+	
+	/**
+	 * hydrate_tokens
+	 * 
+	 * Here you need to pass the values for the trigger tokens.
+	 * Note that each token field also has a token that has to be populated in this method.
+	 *
+	 * @param  mixed $trigger
+	 * @param  mixed $hook_args
+	 * @return void
+	 */
 	public function hydrate_tokens( $trigger, $hook_args ) {
 
 		$post_id = array_shift( $hook_args );
