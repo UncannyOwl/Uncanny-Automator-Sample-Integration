@@ -110,8 +110,6 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 			'Reply-To: ' . get_bloginfo('name') . ' <' . $from . '>',
 		 );
 
-		 elog( $subject, '$subject');
-
 		$success = wp_mail( $to, $subject, $body, $headers );
 
 		if ( ! $success ) {

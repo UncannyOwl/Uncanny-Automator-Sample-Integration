@@ -143,8 +143,8 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 		$comment_data = array_shift( $hook_args );
 
 		$token_values = array(
-			'POST_TYPE' => $trigger['meta']['POST_TYPE'],
-			'POST' => $trigger['meta']['POST'],
+			'POST_TYPE' => get_post_type( $comment_data['comment_post_ID'] ),
+			'POST' => get_the_title( $comment_data['comment_post_ID'] ),
 			'COMMENT_AUTHOR' => $comment_data['comment_author'],
 			'COMMENT_EMAIL' => $comment_data['comment_author_email'],
 			'COMMENT_TEXT' => $comment_data['comment_content'],

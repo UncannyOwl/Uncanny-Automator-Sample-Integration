@@ -117,7 +117,7 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		$post = array_shift( $hook_args );
 
 		$token_values = array(
-			'POST_TYPE' => $trigger['meta']['POST_TYPE'],
+			'POST_TYPE' => $post->post_type,
 			'POST_TITLE' => $post->post_title,
 			'POST_URL' => get_permalink( $post->ID )
 		); 
