@@ -97,18 +97,20 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 	 * @param $parsed
 	 */
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
-		
+
 		$action_meta = $action_data['meta'];
 
-		$to = Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args );
-		$from = Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args );
-		$subject = Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args );
-		$body = Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args );
+		$to = sanitize_email( Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args ) );
+		$from = sanitize_email( Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args ) );
+		$subject = sanitize_text_field( Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args ) );
+		$body = sanitize_text_field( Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args ) );
 		$headers = array( 
-			'Content-Type: text/html; charset=UTF-8',
+			'Content-Type: text/html; charset=utf-8',
 			'From: ' . get_bloginfo('name') . ' <' . $from . '>',
 			'Reply-To: ' . get_bloginfo('name') . ' <' . $from . '>',
 		 );
+
+		 elog( $subject, '$subject');
 
 		$success = wp_mail( $to, $subject, $body, $headers );
 
