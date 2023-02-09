@@ -12,6 +12,10 @@ class Helpers {
 	public function get_post_types() {
 
 		$options = array();
+		$options[] = array(
+			'text' => __( 'Any post type', 'automator-sample' ),
+			'value' => '-1'
+		);
 
 		$post_types = get_post_types();
 
@@ -24,6 +28,62 @@ class Helpers {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * ajax_get_posts
+	 *
+	 * Returns an array of registered post types.
+	 * 
+	 * @return void
+	 */
+	public function ajax_get_posts() {
+
+		// This method will cvalidate the nonce in the request.
+		Automator()->utilities->ajax_auth_check();
+
+		elog('ajax_get_posts');
+		elog($_POST);
+
+		$values = automator_filter_input_array( 'values', INPUT_POST );
+
+		$options = array();
+		$options[] = array(
+			'text' => __( 'Any post', 'automator-sample' ),
+			'value' => '-1'
+		);
+
+		if ( empty( $values['POST_TYPE'] ) ) {
+			wp_send_json( 
+				array(
+					'success' => false,
+					'error'   => esc_html__( "Please select the post type first.", 'uncanny-automator' ),
+					'options' => $options
+				)	
+			);
+		}
+
+		$args = array(
+			'post_type' => $values['POST_TYPE'],
+			'numberposts' => -1
+		);
+
+		$posts = get_posts( $args );
+
+		foreach ( $posts as $post ) {
+
+			$options[] = array(
+				'text' => $post->post_title,
+				'value' => $post->ID
+			);
+		}
+
+		wp_send_json( 
+			array(
+				'success' => true,
+				'options' => $options
+			)	
+		);
 	}
 
     /**

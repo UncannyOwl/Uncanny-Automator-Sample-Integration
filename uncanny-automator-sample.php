@@ -30,13 +30,20 @@ function sample_integration_load_files() {
 	require_once 'settings/settings-sample.php';
 	new Sample_Integration_Settings( $helpers );
 
-	require_once 'actions/sample-action.php';
-	new Automator_Sample_Action( $helpers );
+	require_once 'actions/send-email-sample.php';
+	new Send_Email_Sample( $helpers );
 
-	require_once 'triggers/sample-trigger.php';
-	new Automator_Sample_Trigger( $helpers );
-	
+	require_once 'triggers/post-created-sample.php';
+	new Post_Created_Sample_Trigger( $helpers );
+
+	require_once 'triggers/anon-comment-submitted.php';
+	new Comment_Submitted_Sample( $helpers );
+
+	// Register an ajax endpoint for the next field
+	add_action( 'wp_ajax_automator_sample_get_posts', array( $helpers, 'ajax_get_posts' ) );
+
 }
 
 add_action( 'automator_add_integration', 'sample_integration_load_files' );
+
 

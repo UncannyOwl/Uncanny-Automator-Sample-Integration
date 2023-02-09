@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Class Automator_Sample_Action
+ * Class Send_Email_Sample
  */
-class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
+class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 
 	/**
 	 *
 	 */
 	protected function setup_action() {
 
-		$this->set_integration( 'AUTOMATOR_SAMPLE' );
-		$this->set_action_code( 'SAMPLE_SENDEMAIL' );
-		$this->set_action_meta( 'SAMPLE_EMAILTO' );
+		$this->set_integration( 'SAMPLE_INTEGRATION' );
+		$this->set_action_code( 'SEND_EMAIL_SAMPLE' );
+		$this->set_action_meta( 'EMAIL_TO' );
 
 		/* translators: Action - WordPress */
 		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'uncanny-automator' ), $this->get_action_meta() ) );
@@ -30,7 +30,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILFROM',
+						'option_code' => 'EMAIL_FROM',
 						'label'       => 'From',
 						'description' => 'Sample description',
 						'placeholder' => 'Enter from email',
@@ -41,7 +41,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILTO',
+						'option_code' => 'EMAIL_TO',
 						'label'       => 'To',
 						'input_type'  => 'email',
 					)
@@ -49,7 +49,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILCC',
+						'option_code' => 'EMAIL_CC',
 						'label'       => 'CC',
 						'input_type'  => 'email',
 						'required'    => false,
@@ -58,7 +58,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILBCC',
+						'option_code' => 'EMAIL_BCC',
 						'label'       => 'BCC',
 						'input_type'  => 'email',
 						'required'    => false,
@@ -67,7 +67,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILSUBJECT',
+						'option_code' => 'EMAIL_SUBJECT',
 						'label'       => 'Subject',
 						'input_type'  => 'text',
 					)
@@ -75,7 +75,7 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 				/* translators: Email field */
 				Automator()->helpers->recipe->field->text(
 					array(
-						'option_code' => 'SAMPLE_EMAILBODY',
+						'option_code' => 'EMAIL_BODY',
 						'label'       => 'Body',
 						'input_type'  => 'textarea',
 					)
@@ -100,12 +100,12 @@ class Automator_Sample_Action extends Uncanny_Automator\Recipe\Action {
 		$action_meta = $action_data['meta'];
 		// Parsing fields to return an actual value from token
 		$data = array(
-			'to'      => Automator()->parse->text( $action_meta['SAMPLE_EMAILTO'], $recipe_id, $user_id, $args ),
-			'from'    => Automator()->parse->text( $action_meta['SAMPLE_EMAILFROM'], $recipe_id, $user_id, $args ),
-			'cc'      => Automator()->parse->text( $action_meta['SAMPLE_EMAILCC'], $recipe_id, $user_id, $args ),
-			'bcc'     => Automator()->parse->text( $action_meta['SAMPLE_EMAILBCC'], $recipe_id, $user_id, $args ),
-			'subject' => Automator()->parse->text( $action_meta['SAMPLE_EMAILSUBJECT'], $recipe_id, $user_id, $args ),
-			'body'    => Automator()->parse->text( $action_meta['SAMPLE_EMAILBODY'], $recipe_id, $user_id, $args ),
+			'to'      => Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args ),
+			'from'    => Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args ),
+			'cc'      => Automator()->parse->text( $action_meta['EMAIL_CC'], $recipe_id, $user_id, $args ),
+			'bcc'     => Automator()->parse->text( $action_meta['EMAIL_BCC'], $recipe_id, $user_id, $args ),
+			'subject' => Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args ),
+			'body'    => Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args ),
 		);
 		// Prepare mail
 		$this->set_mail_values( $data );

@@ -1,22 +1,24 @@
 <?php
 
 /**
- * Class Automator_Sample_Trigger
+ * Class Post_Created_Sample_Trigger
  */
-class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
+class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 
 	/**
+	 * This is a logged-in trigger example that requires a user and allows counting/limiting how many times a user can
+	 * trigger the recipe. Logged-in recipes also allow using multiple triggers in a single recipe.
 	 *
 	 */
 	protected function setup_trigger() {
 
-		$this->set_integration( 'AUTOMATOR_SAMPLE' );
+		$this->set_integration( 'SAMPLE_INTEGRATION' );
 		$this->set_trigger_code( 'POST_CREATED_SAMPLE' );
 		$this->set_trigger_meta( 'POST_TYPE' );
 		/* Translators: post type */
-		$this->set_sentence( sprintf( esc_attr__( 'A {{post type:%1$s}} is created sample trigger', 'automator-sample' ), 'POST_TYPE' ) );
+		$this->set_sentence( sprintf( esc_attr__( '{{A post type:%1$s}} is created sample trigger', 'automator-sample' ), 'POST_TYPE' ) );
 		/* Translators: post type */
-		$this->set_readable_sentence( esc_attr__( 'A {{post type}} is created sample trigger', 'automator-sample' ) );
+		$this->set_readable_sentence( esc_attr__( '{{A post type}} is created sample trigger', 'automator-sample' ) );
 
 		$this->add_action( 'wp_after_insert_post', 90, 4 );
 	}
@@ -29,7 +31,7 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 			'label'           => __( 'Post type', 'automator-sample' ),
 			'required'        => true,
 			'options'         => $this->helpers->get_post_types(),
-			'placeholder' 	  => __( 'Please select a page', 'automator-sample' ),
+			'placeholder' 	  => __( 'Please select a post type', 'automator-sample' ),
 		);
 
 		return array(
@@ -60,7 +62,7 @@ class Automator_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		$post_before = array_shift( $hook_args ); 
 
 		// If the post type selected in the trigger options doesn't match the post type being inserted, bail.
-		if ( $selected_post_type !== $post->post_type ) {
+		if (  '-1' != $selected_post_type && $selected_post_type !== $post->post_type ) {
 			return false;
 		}
 
