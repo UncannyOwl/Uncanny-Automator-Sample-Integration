@@ -103,7 +103,7 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 		$to = sanitize_email( Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args ) );
 		$from = sanitize_email( Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args ) );
 		$subject = sanitize_text_field( Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args ) );
-		$body = sanitize_text_field( Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args ) );
+		$body = wp_filter_post_kses( stripslashes( ( Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args ) ) ) );
 		$headers = array( 
 			'Content-Type: text/html; charset=utf-8',
 			'From: ' . get_bloginfo('name') . ' <' . $from . '>',
