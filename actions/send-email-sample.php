@@ -15,9 +15,9 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 		$this->set_action_meta( 'EMAIL_TO' );
 
 		/* translators: Action - WordPress */
-		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'uncanny-automator' ), $this->get_action_meta() ) );
+		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'automator-sample' ), $this->get_action_meta() ) );
 		/* translators: Action - WordPress */
-		$this->set_readable_sentence( esc_attr__( 'Send an {{email}} from Sample Integration', 'uncanny-automator' ) );
+		$this->set_readable_sentence( esc_attr__( 'Send an {{email}} from Sample Integration', 'automator-sample' ) );
 		
 		$this->set_options_callback( array( $this, 'load_options' ) );
 		
@@ -97,28 +97,27 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 	 * @param $parsed
 	 */
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
+		
 		$action_meta = $action_data['meta'];
-		// Parsing fields to return an actual value from token
-		$data = array(
-			'to'      => Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args ),
-			'from'    => Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args ),
-			'cc'      => Automator()->parse->text( $action_meta['EMAIL_CC'], $recipe_id, $user_id, $args ),
-			'bcc'     => Automator()->parse->text( $action_meta['EMAIL_BCC'], $recipe_id, $user_id, $args ),
-			'subject' => Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args ),
-			'body'    => Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args ),
-		);
-		// Prepare mail
-		$this->set_mail_values( $data );
 
-		// Send mail
-		$mailed = $this->send_email();
-		// If there was an error, it'll be logged in action log with an error message.
-		if ( is_automator_error( $mailed ) ) {
-			$error_message = $this->get_error_message();
-			// Complete action with errors and log Error message.
-			Automator()->complete->action( $user_id, $action_data, $recipe_id, $error_message );
+		$to = Automator()->parse->text( $action_meta['EMAIL_TO'], $recipe_id, $user_id, $args );
+		$from = Automator()->parse->text( $action_meta['EMAIL_FROM'], $recipe_id, $user_id, $args );
+		$subject = Automator()->parse->text( $action_meta['EMAIL_SUBJECT'], $recipe_id, $user_id, $args );
+		$body = Automator()->parse->text( $action_meta['EMAIL_BODY'], $recipe_id, $user_id, $args );
+		$headers = array( 
+			'Content-Type: text/html; charset=UTF-8',
+			'From: ' . get_bloginfo('name') . ' <' . $from . '>',
+			'Reply-To: ' . get_bloginfo('name') . ' <' . $from . '>',
+		 );
+
+		$success = wp_mail( $to, $subject, $body, $headers );
+
+		if ( ! $success ) {
+			$this->add_log_error( __( 'Email was not sent', 'automator-sample' ) );
+			return false;
 		}
-		// Everything went fine. Complete action.
-		Automator()->complete->action( $user_id, $action_data, $recipe_id );
+
+		return true;
+
 	}
 }
