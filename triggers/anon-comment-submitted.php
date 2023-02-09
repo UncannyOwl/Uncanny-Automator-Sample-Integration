@@ -77,15 +77,12 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 		$comment_id = array_shift( $hook_args );
 		$approved = array_shift( $hook_args );
 		$comment_data = array_shift( $hook_args );
-		elog( 'validate_trigger' );
-		elog( $comment_data, '$comment_data' );
-		elog( $selected_post_type, '$selected_post_type' );
+
 		// If the post type selected in the trigger options doesn't match the post type being commented, bail.
 		if ( '-1' != $selected_post_type && $selected_post_type != get_post_type( $comment_data['comment_post_ID'] ) ) {
 			return false;
 		}
 
-		elog( $selected_post, '$selected_post' );
 		// Make sure the post is being published and not updated or drafted
 		if ( '-1' != $selected_post && $selected_post != $comment_data['comment_post_ID'] ) {
 			return false;
