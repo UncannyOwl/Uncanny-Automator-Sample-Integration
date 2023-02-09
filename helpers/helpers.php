@@ -41,10 +41,7 @@ class Helpers {
 
 		// This method will cvalidate the nonce in the request.
 		Automator()->utilities->ajax_auth_check();
-
-		elog('ajax_get_posts');
-		elog($_POST);
-
+		
 		$values = automator_filter_input_array( 'values', INPUT_POST );
 
 		$options = array();
