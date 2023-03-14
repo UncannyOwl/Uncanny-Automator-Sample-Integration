@@ -13,7 +13,6 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 
 		// Here we set the trigger type to anonymous so it can run for any site visitor even for non-logged-in
 		$this->set_trigger_type( 'anonymous' );
-		//$this->set_requires_user( false );
 
 		$this->set_integration( 'SAMPLE_INTEGRATION' );
 		$this->set_trigger_code( 'COMMENT_SUBMITTED' );
