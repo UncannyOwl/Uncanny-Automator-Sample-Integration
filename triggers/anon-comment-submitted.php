@@ -91,7 +91,7 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 	}
 
 	/**
-	 * additional_tokens
+	 * define_tokens
 	 * 
 	 * Alter this method if you want to add some additional tokens.
 	 *
@@ -99,7 +99,7 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 	 * @param  mixed $trigger - options selected in the current recipe/trigger
 	 * @return array
 	 */
-	public function additional_tokens( $tokens, $trigger ) {
+	public function define_tokens( $tokens, $trigger ) {
 
 		$tokens[] = array(
 			'tokenId'         => 'COMMENT_AUTHOR',
