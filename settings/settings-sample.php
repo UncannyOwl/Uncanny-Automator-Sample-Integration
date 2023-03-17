@@ -9,7 +9,7 @@ class Sample_Integration_Settings  extends Uncanny_Automator\Settings\Premium_In
 
 		$this->set_id( 'sample-integration' );
 
-		$this->set_icon( __DIR__ . 'img\automator-core-icon.svg'  );
+		$this->set_icon( __DIR__ . '\..\img\automator-core-icon.svg'  );
 
 		$this->set_name( 'Sample integration' );
 

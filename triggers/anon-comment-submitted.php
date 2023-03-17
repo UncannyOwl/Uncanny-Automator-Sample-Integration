@@ -5,11 +5,15 @@
  */
 class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 
+	protected $helpers;
+
 	/**
 	 * This is an anonymous trigger that will fire even if no user is logged in.
 	 * Only one such trigger per anonymous (evreyone) recipe can be used.
 	 */
 	protected function setup_trigger() {
+
+		$this->helpers = array_shift( $this->dependencies );
 
 		// Here we set the trigger type to anonymous so it can run for any site visitor even for non-logged-in
 		$this->set_trigger_type( 'anonymous' );
