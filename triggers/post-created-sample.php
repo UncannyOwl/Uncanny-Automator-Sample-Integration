@@ -85,7 +85,7 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 	 * @param  mixed $trigger - options selected in the current recipe/trigger
 	 * @return array
 	 */
-	public function define_tokens( $tokens, $trigger ) {
+	public function define_tokens( $trigger, $tokens ) {
 
 		$tokens[] = array(
 			'tokenId'         => 'POST_TITLE',
