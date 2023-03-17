@@ -50,8 +50,6 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 	 */
 	public function validate_trigger( $trigger, $hook_args ) {
 
-		elog( $trigger, 'validate_trigger' );
-
 		// Make sure the trigger has some value selected in the options
 		if ( ! isset( $trigger['meta']['POST_TYPE'] ) ) {
 			//Something is wrong, the trigger doesn't have the required option value.
@@ -88,8 +86,6 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 	 * @return array
 	 */
 	public function define_tokens( $tokens, $trigger ) {
-
-		elog( $trigger, 'validate_trigger' );
 
 		$tokens[] = array(
 			'tokenId'         => 'POST_TITLE',
