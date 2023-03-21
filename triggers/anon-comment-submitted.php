@@ -64,7 +64,7 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 	/**
 	 * @return bool
 	 */
-	public function validate_trigger( $trigger, $hook_args ) {
+	public function validate( $trigger, $hook_args ) {
 
 		// Make sure the trigger has some value selected in the options
 		if ( ! isset( $trigger['meta']['POST'] ) || ! isset( $trigger['meta']['POST_TYPE'] ) ) {
