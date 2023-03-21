@@ -48,7 +48,7 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 	/**
 	 * @return bool
 	 */
-	public function validate_trigger( $trigger, $hook_args ) {
+	public function validate( $trigger, $hook_args ) {
 
 		// Make sure the trigger has some value selected in the options
 		if ( ! isset( $trigger['meta']['POST_TYPE'] ) ) {
