@@ -103,7 +103,7 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 	 * @param  mixed $trigger - options selected in the current recipe/trigger
 	 * @return array
 	 */
-	public function define_tokens( $tokens, $trigger ) {
+	public function define_tokens( $trigger, $tokens ) {
 
 		$tokens[] = array(
 			'tokenId'         => 'COMMENT_AUTHOR',
