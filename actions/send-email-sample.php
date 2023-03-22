@@ -23,68 +23,61 @@ class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
 
 	public function options() {
 
-		$options_group = array(
-			$this->get_action_meta() => array(
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_FROM',
-						'label'       => 'From',
-						'description' => 'Sample description',
-						'placeholder' => 'Enter from email',
-						'input_type'  => 'email',
-						'default'     => 'john@doe.com',
-					)
-				),
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_TO',
-						'label'       => 'To',
-						'input_type'  => 'email',
-					)
-				),
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_CC',
-						'label'       => 'CC',
-						'input_type'  => 'email',
-						'required'    => false,
-					)
-				),
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_BCC',
-						'label'       => 'BCC',
-						'input_type'  => 'email',
-						'required'    => false,
-					)
-				),
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_SUBJECT',
-						'label'       => 'Subject',
-						'input_type'  => 'text',
-					)
-				),
-				/* translators: Email field */
-				Automator()->helpers->recipe->field->text(
-					array(
-						'option_code' => 'EMAIL_BODY',
-						'label'       => 'Body',
-						'input_type'  => 'textarea',
-					)
-				),
+		return array(
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_FROM',
+					'label'       => 'From',
+					'description' => 'Sample description',
+					'placeholder' => 'Enter from email',
+					'input_type'  => 'email',
+					'default'     => 'john@doe.com',
+				)
+			),
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_TO',
+					'label'       => 'To',
+					'input_type'  => 'email',
+				)
+			),
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_CC',
+					'label'       => 'CC',
+					'input_type'  => 'email',
+					'required'    => false,
+				)
+			),
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_BCC',
+					'label'       => 'BCC',
+					'input_type'  => 'email',
+					'required'    => false,
+				)
+			),
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_SUBJECT',
+					'label'       => 'Subject',
+					'input_type'  => 'text',
+				)
+			),
+			/* translators: Email field */
+			Automator()->helpers->recipe->field->text(
+				array(
+					'option_code' => 'EMAIL_BODY',
+					'label'       => 'Body',
+					'input_type'  => 'textarea',
+				)
 			),
 		);
-
-		return array(
-				'options_group' => $options_group,
-		);
-		
 	}
 
 	/**

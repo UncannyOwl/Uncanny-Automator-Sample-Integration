@@ -52,13 +52,9 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 		);
 
 		return array(
-			'options_group' => array(
-				'POST' => array(
-					$post_types_dropdown,
-					$posts
-				)
-			)
-		);
+				$post_types_dropdown,
+				$posts
+			);
 	}	
 
 	/**

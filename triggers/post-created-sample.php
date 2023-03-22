@@ -39,10 +39,8 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		);
 
 		return array(
-			'options' => array(
 				$post_types_dropdown
-			)
-		);
+			);
 	}	
 
 	/**
