@@ -29,7 +29,7 @@ class Comment_Submitted_Sample extends Uncanny_Automator\Recipe\Trigger {
 		$this->add_action( 'comment_post', 90, 3 );
 	}
 
-	public function load_options() {
+	public function options() {
 
 		$post_types_dropdown = array(
 			'input_type'      => 'select',
