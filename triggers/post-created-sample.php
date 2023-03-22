@@ -27,7 +27,7 @@ class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
 		$this->add_action( 'wp_after_insert_post', 90, 4 );
 	}
 
-	public function load_options() {
+	public function options() {
 
 		$post_types_dropdown = array(
 			'input_type'      => 'select',
