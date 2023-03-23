@@ -17,7 +17,7 @@
 
 function sample_integration_load_files() {
 	// If this class doesn't exist Uncanny Automator plugin needs to be updated.
-	if ( ! class_exists( 'Uncanny_Automator\Recipe\Integration' ) ) {
+	if ( ! class_exists( '\Uncanny_Automator\Integration' ) ) {
 		return;
 	}
 
@@ -31,7 +31,7 @@ function sample_integration_load_files() {
 	
 	$helpers = new Helpers();
 	
-	new Add_Sample_Integration( $helpers );
+	new Sample_Integration( $helpers );
 	new Sample_Integration_Settings( $helpers );
 	new Send_Email_Sample( $helpers );
 	new Post_Created_Sample_Trigger( $helpers );

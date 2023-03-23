@@ -3,7 +3,7 @@
 /**
  * Class Send_Email_Sample
  */
-class Send_Email_Sample extends Uncanny_Automator\Recipe\Action {
+class Send_Email_Sample extends \Uncanny_Automator\Recipe\Action {
 
 	/**
 	 *

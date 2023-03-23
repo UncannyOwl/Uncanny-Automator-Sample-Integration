@@ -3,7 +3,7 @@
 /**
  * Class Post_Created_Sample_Trigger
  */
-class Post_Created_Sample_Trigger extends Uncanny_Automator\Recipe\Trigger {
+class Post_Created_Sample_Trigger extends \Uncanny_Automator\Recipe\Trigger {
 
 	protected $helpers;
 

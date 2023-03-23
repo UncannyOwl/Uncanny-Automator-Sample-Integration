@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Add_Sample_Integration
+ * Class Sample_Integration
  */
-class Add_Sample_Integration extends Uncanny_Automator\Recipe\Integration {
+class Sample_Integration extends \Uncanny_Automator\Integration {
 	
 	/**
 	 *

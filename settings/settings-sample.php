@@ -3,7 +3,7 @@
 /**
  * Sample Integration Settings
  */
-class Sample_Integration_Settings  extends Uncanny_Automator\Settings\Premium_Integration_Settings {
+class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_Integration_Settings {
 
 	public function set_properties() {
 
