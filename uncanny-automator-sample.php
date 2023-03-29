@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Uncanny Automator Sample Integration
+ * Plugin Name: Uncanny Automator Sample Integration
  */
 
 add_action( 'automator_add_integration', 'sample_integration_load_files' );
@@ -36,5 +36,4 @@ function sample_integration_load_files() {
 }
 
 add_action( 'automator_add_integration', 'sample_integration_load_files' );
-
 
