@@ -122,5 +122,4 @@ class Post_Created_Sample_Trigger extends \Uncanny_Automator\Recipe\Trigger {
 
 		return $token_values;
 	}
-
 }
