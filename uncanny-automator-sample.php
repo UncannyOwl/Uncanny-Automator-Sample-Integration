@@ -7,7 +7,8 @@
 add_action( 'automator_add_integration', 'sample_integration_load_files' );
 
 function sample_integration_load_files() {
-	// If this class doesn't exist Uncanny Automator plugin needs to be updated.
+
+	// If this class doesn't exist Uncanny Automator plugin is not enabled or needs to be updated.
 	if ( ! class_exists( '\Uncanny_Automator\Integration' ) ) {
 		return;
 	}
