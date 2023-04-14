@@ -14,16 +14,19 @@ class Post_Created_Sample_Trigger extends \Uncanny_Automator\Recipe\Trigger {
 	 */
 	protected function setup_trigger() {
 
+		// Store a dependency (optional)
 		$this->helpers = array_shift( $this->dependencies );
 
+		// Define the Trigger's info
 		$this->set_integration( 'SAMPLE_INTEGRATION' );
 		$this->set_trigger_code( 'POST_CREATED_SAMPLE' );
 		$this->set_trigger_meta( 'POST_TYPE' );
-		/* Translators: post type */
+
+		// Trigger sentence
 		$this->set_sentence( sprintf( esc_attr__( '{{A post type:%1$s}} is created sample trigger', 'automator-sample' ), 'POST_TYPE' ) );
-		/* Translators: post type */
 		$this->set_readable_sentence( esc_attr__( '{{A post type}} is created sample trigger', 'automator-sample' ) );
 
+		// Trigger wp hook
 		$this->add_action( 'wp_after_insert_post', 90, 4 );
 	}
 
