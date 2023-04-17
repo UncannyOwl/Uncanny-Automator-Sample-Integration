@@ -30,6 +30,13 @@ function sample_integration_load_files() {
 
 	require_once 'triggers/anon-comment-submitted.php';
 	new Comment_Submitted_Sample( $helpers );
+
+	// Conditions require Automator Pro installed and active
+	if ( class_exists( '\Uncanny_Automator_Pro\Action_Condition' ) ) {
+		elog( '\Uncanny_Automator_Pro\Action_Condition exists!' );
+		require_once 'conditions/user-email-contains-text.php';
+		new User_Email_Contains_Text( $helpers );
+	}
 	
 	// Register an ajax endpoint for the get posts field
 	add_action( 'wp_ajax_automator_sample_get_posts', array( $helpers, 'ajax_get_posts' ) );
