@@ -11,16 +11,19 @@ class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_In
 
 	public function set_properties() {
 
-		$this->helpers = array_shift( $this->dependencies );
-
+		// The unique page ID that will be added to the URL
 		$this->set_id( 'sample-integration' );
 
+		// The integration icon will be used for the settings page, so set this option to the integration ID
 		$this->set_icon( 'SAMPLE_INTEGRATION' );
 
+		// The name of the settings tab
 		$this->set_name( 'Sample integration' );
 
-		$this->register_option( 'some_sample_intgeration_setting' );
+		// Use this method to register an option for each field your settings page will have
+		$this->register_option( 'sample_api_key' );
 
+		// Handle the disconnect button action
 		add_action( 'init', array( $this, 'disconnect' ) );
 
 	}
@@ -29,7 +32,7 @@ class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_In
 
 		$this->is_connected = false;
 
-		$this->api_key = get_option( 'some_sample_intgeration_setting', false );
+		$this->api_key = get_option( 'sample_api_key', false );
 		
 		if ( false !== $this->api_key ) {
 			$this->is_connected = true;
@@ -62,7 +65,7 @@ class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_In
 		if ( ! $this->is_connected ) {
 
 			$args = array(
-				'id'       => 'some_sample_intgeration_setting',
+				'id'       => 'sample_api_key',
 				'value'    => $this->api_key,
 				'label'    => 'API key',
 				'required' => true,
@@ -94,7 +97,7 @@ class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_In
 
 	public function settings_updated() {
 
-		$this->api_key = get_option( 'some_sample_intgeration_setting', false );
+		$this->api_key = get_option( 'sample_api_key', false );
 
 		if ( is_numeric( $this->api_key ) ) {
 			$this->add_alert(
@@ -126,7 +129,7 @@ class Sample_Integration_Settings extends \Uncanny_Automator\Settings\Premium_In
 			return;
 		}
 
-		delete_option( 'some_sample_intgeration_setting' );
+		delete_option( 'sample_api_key' );
 
 		wp_safe_redirect( $this->get_settings_page_url() );
 
