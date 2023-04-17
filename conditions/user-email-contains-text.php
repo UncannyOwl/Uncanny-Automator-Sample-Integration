@@ -51,19 +51,28 @@ class User_Email_Contains_Text extends \Uncanny_Automator_Pro\Action_Condition {
 	 */
 	public function evaluate_condition() {
 
+		// Get the text that users entered in the condition option
 		$text = mb_strtolower( $this->get_parsed_option( 'TEXT' ) );
 
+		// Get the WP user object
+		// Note that $this->user is not always the current user
         $user_data = get_userdata( $this->user_id );
         
-        $user_email = mb_strtolower( $user_website->email );
+		// GEt the user email
+        $user_email = mb_strtolower( $user_data->email );
 
-		// If the conditions is not met, send an error message and mark the condition as failed.
+		// If the email address doesn't contain the text
 		if ( false === strpos( $user_email, $text ) ) {
 
-			$this->condition_failed( sprintf( __( 'User email "%s" doesn\'t contain "%s"', 'automator-sample' ), $user_website, $text ) );
+			// Create any error string
+			$log_error = sprintf( __( 'User email "%s" doesn\'t contain "%s"', 'automator-sample' ), $user_email, $text );
+
+			// Pass the error to the condition_failed method
+			// This will prevent the action from running
+			$this->condition_failed( $log_error );
 
 		}
 
-		// If the condition is met, do nothing.
+		// If the condition is met, do nothing and let the action run.
 	}
 }
