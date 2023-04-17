@@ -59,7 +59,7 @@ class User_Email_Contains_Text extends \Uncanny_Automator_Pro\Action_Condition {
         $user_data = get_userdata( $this->user_id );
         
 		// GEt the user email
-        $user_email = mb_strtolower( $user_data->email );
+        $user_email = mb_strtolower( $user_data->user_email );
 
 		// If the email address doesn't contain the text
 		if ( false === strpos( $user_email, $text ) ) {
