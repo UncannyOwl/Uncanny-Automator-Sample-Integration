@@ -8,14 +8,22 @@ class User_Email_Contains_Text extends \Uncanny_Automator_Pro\Action_Condition {
 
 	public function define_condition() {
 
+		// Which integration this condition belongs to
 		$this->integration = 'SAMPLE_INTEGRATION';
+
+		// The condition name
 		$this->name         = __( 'User email contains text', 'automator-sample' );
+
+		// Condition code
 		$this->code         = 'USER_EMAIL_CONTAINS_TEXT';
+
+		// Dynamic name
 		$this->dynamic_name = sprintf(
 			esc_html__( 'User email contains {{text:%s}}', 'automator-sample' ),
 			'TEXT'
 		);
 
+		// This particular condition requires a user
 		$this->requires_user = true;
 	}
 
@@ -58,7 +66,7 @@ class User_Email_Contains_Text extends \Uncanny_Automator_Pro\Action_Condition {
 		// Note that $this->user is not always the current user
         $user_data = get_userdata( $this->user_id );
         
-		// GEt the user email
+		// Get the user email
         $user_email = mb_strtolower( $user_data->user_email );
 
 		// If the email address doesn't contain the text
