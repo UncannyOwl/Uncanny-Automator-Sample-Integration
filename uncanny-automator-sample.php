@@ -33,7 +33,6 @@ function sample_integration_load_files() {
 
 	// Conditions require Automator Pro installed and active
 	if ( class_exists( '\Uncanny_Automator_Pro\Action_Condition' ) ) {
-		elog( '\Uncanny_Automator_Pro\Action_Condition exists!' );
 		require_once 'conditions/user-email-contains-text.php';
 		new User_Email_Contains_Text( $helpers );
 	}
