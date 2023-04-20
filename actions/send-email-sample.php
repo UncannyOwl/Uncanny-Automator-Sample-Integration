@@ -70,7 +70,7 @@ class Send_Email_Sample extends \Uncanny_Automator\Recipe\Action {
 	public function define_tokens() {
 		return array(
 			'STATUS' => array(
-				'name' => __( 'Send status', 'uncanny-automator' ),
+				'name' => __( 'Send status', 'automator-sample' ),
 				'type' => 'text',
 			),
 		);
