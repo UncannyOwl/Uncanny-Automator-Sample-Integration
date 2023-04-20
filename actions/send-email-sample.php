@@ -18,7 +18,6 @@ class Send_Email_Sample extends \Uncanny_Automator\Recipe\Action {
 		// Define the Action's sentence
 		$this->set_sentence( sprintf( esc_attr__( 'Send an email to {{email address:%1$s}} from Sample Integration', 'automator-sample' ), $this->get_action_meta() ) );
 		$this->set_readable_sentence( esc_attr__( 'Send an {{email}} from Sample Integration', 'automator-sample' ) );
-		
 	}
 	
 	/**
@@ -62,6 +61,20 @@ class Send_Email_Sample extends \Uncanny_Automator\Recipe\Action {
 			),
 		);
 	}
+	
+	/**
+	 * define_tokens
+	 *
+	 * @return array
+	 */
+	public function define_tokens() {
+		return array(
+			'STATUS' => array(
+				'name' => __( 'Send status', 'uncanny-automator' ),
+				'type' => 'text',
+			),
+		);
+	}
 
 	/**
 	 * @param int $user_id
@@ -87,13 +100,25 @@ class Send_Email_Sample extends \Uncanny_Automator\Recipe\Action {
 			'Reply-To: ' . get_bloginfo('name') . ' <' . $from . '>',
 		 );
 
-		// Send
-		$success = wp_mail( $to, $subject, $body, $headers );
+		// Send the email. Returns true or false
+		$status = wp_mail( $to, $subject, $body, $headers ); 
+
+		// Convert true or false into string error
+		$status_string = $status ? __( 'Email was sent', 'automator-sample' ) : __( 'Email was not sent', 'automator-sample' );
+
+		// Populate the custom token value
+		$this->hydrate_tokens( 
+			array( 
+				'STATUS' => $status_string 
+				) 
+		);
 
 		// Handle errors
-		if ( ! $success ) {
-			$this->add_log_error( __( 'Email was not sent', 'automator-sample' ) );
-			return false;
+		if ( ! $status ) {
+
+			$this->add_log_error( $status_string );
+
+			return false; // Return false if error ocurred during the action completion
 		}
 
 		// Always return true if everything was okay
